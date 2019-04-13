@@ -5,7 +5,7 @@ This repository refers to a teaching activity on PID control targeted to Compute
 
 When referring to this activity and material, please cite
 
-A. Leva, "PID control education for computer engineering students: a step to bridge a cultural gap", IFAC Journal of Systems and Control (in press).
+A. Leva, "PID control education for computer engineering students: a step to bridge a cultural gap", IFAC Journal of Systems and Control (at present in press, complete info will be given here as soon as available).
 
 This repository contains teaching material in the form of
  - pdf slides,
