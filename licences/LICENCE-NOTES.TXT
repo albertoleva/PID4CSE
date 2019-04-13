@@ -1,0 +1,38 @@
+PID4CSE -- Copyright and licence notes
+
+1. FOREWORD
+
+The PID4CSE project contains teaching material for the activity titled "PID Control for Computer Engineers -- with a Systems and Control Theory micro-course in disguise".
+
+This material consists of slides, wxMaxima and Scilab scripts, and Modelica models. Scripts and models are meant to support the didactic activity. This document contains some notes about the material, and the used licences.
+
+2. SLIDES
+
+The slides are made available in the form of both a pdf, and the source files to produce it. The source files are LaTeX ones and images.
+
+The LaTeX files are released within the terms of the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0) licence.
+
+The images are of two types. The first type comprehends images that were produced by the author from scratch, using drawing or mathematical software, and thus naturally fall within the CC-BY-SA 4.0 terms.
+
+The second type comprehends images that were either downloaded from the web, or composed by assembling and/or editing downloaded images or parts of them. For images of this second type, only material released under CC0 terms was used (in the case you notice that a mistake was made in this respect, please take into account that this happened in good faith, notify the author, and remedial action will be taken as soon as possible by removing the material under question).
+
+The images of the second type are are licensed under a Creative Commons CC0 1.0 Universal licence. The files for these images are identified by appending a "_cc0" to their name, before the extension. For example, foo.jpg is an image of the first type and is CC-BY-SA, while bar_cc0.png belongs to the second type and is CC0.
+
+3. SCRIPTS AND MODELS
+
+The supporting wxMaxima and Scilab scripts, as well as the Modelica models, are released within the terms of the Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0) licence.
+
+This choice was taken notwithstanding the well known recommendation to not use CC-BY-SA for software, for the basic reason that scripts and models make in fact hardly any practical sense out of the context of the project, and the corresponding teaching activity. The interest for them resides entirely in their source code, hence in the case of sharing of the work or a derivative of it, not sharing that code would just be illogical. There is nothing in them that can be the subject for a patent. Also, for the very same reason as the facts above, no compatibility issues e.g. with GPL or any other software-oriented licence can be envisaged for so small and activity-specific a piece of work. And finally, parts of the code are reported and commented on in the slides, which would make the application of two licences cumbersome (if not plainly infeasible).
+
+4. A FINAL REMARK
+
+By selecting CC-BY-SA, that does not contain any specific term about the distribution of source code, the author allows one to create a derivative work in the form e.g. of a pdf obtained from modified LaTeX sources, and distribute only the pdf and not the modified sources.
+
+This was done deliberately, for two reasons. First, one might want to integrate all or parts of the PID4CSE LaTeX sources into his/her didactic material, and that material can be subjected to virtually any licence; in this case, while the author bears to deem BY-SA a reasonable request, adding the obligation to also distribute the modified LaTeX could lead to significant (and in the end useless) further complications. Second, independently of the nature of a possible derivative work, one may not want to incur the additional burden of preparing a distribution-grade set of source files (incidentally, the author hopes his set is clear and usable enough, and apologises in advance for any issue in this respect).
+
+In both cases, if a source-restrictive licence were chosen, the alternative to incurring in the difficulties sketched above would just be to share improperly, or not share at all --- whence the choice of CC-BY-SA.
+
+
+
+
+
