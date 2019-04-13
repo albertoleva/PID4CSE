@@ -12,7 +12,7 @@ This repository contains teaching material in the form of
  - LaTeX source files and graphics to compile the said slides,
  - wxMaxima and Scilab scripts, and Modelica models, to support the activity.
 
-The great majority of the material is licensed under a Creative Commons Attribution-ShareAlike 4.0 International Licence, while the rest is licensed under a Creative Commons CC0 1.0 Universal licence. Both licences can be found here in the "licences" folder; the curious can read more about the chosen licensing scheme and its motivations in LICENCE-NOTES.TXT document, in the same folder.
+The great majority of the material is licensed under a Creative Commons Attribution-ShareAlike 4.0 International Licence, while the rest is licensed under a Creative Commons CC0 1.0 Universal licence. Both licences can be found here in the "licences" folder; the curious can read more about the chosen licensing scheme and its motivations in the LICENCE-NOTES.TXT document, in the same folder.
 
 NOTE: the repository is at present in preparation, material upload will start soon. To give an idea of the content, however, a draft version of the pdf slides is already present (unit 8 and part of unit 7 still being written, references to be added).
 
