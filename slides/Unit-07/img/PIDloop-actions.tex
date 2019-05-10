@@ -1,0 +1,61 @@
+\tikzstyle{block} = [draw, rectangle, minimum height=2em, minimum width=3em,fill=yellow!40!white]
+\tikzstyle{sum} = [draw, circle, node distance=1.5cm,fill=yellow!40!white]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+\begin{tikzpicture}[auto,>=stealth]
+
+\node[input] (w) {};
+\node[sum,right=1cm of w] (fb) {};
+\draw[->] (w) --
+          node[pos=0,left]{$w(k)$}
+          node[pos=0.7,below]{$+$}
+          (fb.west);
+
+\node[block,right=2cm of fb,yshift=1cm]  (CP) {$C_P(z)$};
+\node[block,right=2cm of fb]             (CI) {$C_I(z)$};
+\node[block,right=2cm of fb,yshift=-1cm] (CD) {$C_D(z)$};
+\draw[->] (fb.east) --++ (1cm,0) |- (CP.west);
+\draw[->] (fb.east) --  node[pos=0.25,above] {$e(k)$}  (CI.west);
+\draw[->] (fb.east) --++ (1cm,0) |- (CD.west);
+
+\node[sum,right=2cm of CI] (sa) {};
+\draw[->] (CP.east) -|
+          node[pos=0.23,above]{$u_P(k)$}
+          node[pos=0.9,right]{$+$}     
+          (sa.north);
+\draw[->] (CI.east) --
+          node[pos=0.5,above]{$u_I(k)$}  
+          node[pos=0.9,above]{$+$}     
+          (sa.west);
+\draw[->] (CD.east) -|
+          node[pos=0.23,above]{$u_D(k)$}
+          node[pos=0.9,left]{$+$}     
+          (sa.south);
+
+\node[sum,right=2cm of sa] (sd) {};
+\node[input,above=1cm of sd] (d) {};
+\draw[->] (sa.east) --
+          node[pos=0.5,above]{$u(k)$}
+          node[pos=0.84,above]{$+$}
+          (sd.west);
+\draw[->] (d) --
+          node[pos=0,above]{$d(k)$}
+          node[pos=0.7,left]{$+$}
+          (sd.north);
+
+\node[block,right=15mm of sd] (P) {$P(z)$};
+\node[output,right=15mm of P] (y) {};
+\draw[->] (P.east) --
+          node[pos=1,right]{$y(k)$}
+          (y.west);
+\draw[->] (sd.east) -- (P.west);
+\draw[->] (P.east)
+          --++(7.5mm,0)
+          --++(0,-18mm)
+          -| node[pos=0.92,left]{$-$}
+          (fb.south);
+
+
+
+\end{tikzpicture}

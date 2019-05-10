@@ -1,0 +1,279 @@
+\section{Exercise 01}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Problem}
+\framesubtitleTC{This one we solve together}
+\myPause
+ Given the DT LTI dynamic system described in the state space by
+ \begin{displaymath}
+  A = \begin{bmatrix} 0.4 & 0.4 \\ 0.05 & 0.3 \end{bmatrix}, \quad
+  b = \begin{bmatrix} 1 \\ 0.5 \end{bmatrix}, \quad
+  c = \begin{bmatrix} 2 & -1 \end{bmatrix}, \quad
+  d = 0,
+ \end{displaymath}
+ \begin{itemize}[<+-| alert@+>]
+ \item[(a)] discuss its stability,
+ \item[(b)] express it in scalar form,
+ \item[(c)] compute its transfer function,
+ \item[(d)] compute the first three values ($k=0,1,2$) of its response to
+            \begin{displaymath}
+             x(0) = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad
+             u(k) = 0.4k.
+            \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (a)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We need to compute the eigenvalues $\lambda_{1,2}$ of $A$:
+       \begin{itemize}[<+-| alert@+>]
+       \item[] \vspace{1mm}
+               $\det(\lambda I -A) = 0$,
+       \item[] \vspace{1mm}
+               $\det \left(
+                     \begin{bmatrix} \lambda & 0 \\ 0 & \lambda \end{bmatrix}
+                    -\begin{bmatrix} 0.4 & 0.4 \\ 0.05 & 0.3 \end{bmatrix}
+                     \right) = 0 $,
+       \item[] \vspace{1mm}
+               $\det \begin{bmatrix} \lambda-0.4 & -0.4 \\
+                                    -0.05       & \lambda-0.3 \end{bmatrix} = 0 $,
+       \item[] \vspace{1mm}
+               $(\lambda-0.4)(\lambda-0.3)-(-0.4)(-0.05) = 0$,
+       \item[] \vspace{1mm}
+               $\lambda^2-0.7\lambda+0.1=0$,
+       \item[] \vspace{1mm}
+               $\lambda=\cfrac{0.7\mp\sqrt{0.7^2-4\cdot 0.5}}{2} \quad \Rightarrow \quad
+                \lambda_1=0.2, \; \lambda_2=0.5.$
+       \end{itemize}
+ \item All the eigenvalues of $A$ are strictly less than one in magnitude\\
+       $\Rightarrow$ the system is asymptotically stable.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (b)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Denoting by $x=[x_1\;x_2]'$ the state vector (sign $'$means transpose) we have
+       \begin{displaymath}
+        \left\{\begin{array}{rcl}
+         \begin{bmatrix} x_1(k) \\ x_2(k) \end{bmatrix} 
+         &=&             
+         \begin{bmatrix} 0.4 & 0.4 \\ 0.05 & 0.3 \end{bmatrix}\,
+         \begin{bmatrix} x_1(k-1) \\ x_2(k-1) \end{bmatrix}
+         +
+         \begin{bmatrix} 1 \\ 0.5 \end{bmatrix}\,
+         u(k-1) \\
+         y(k)
+         &=&          
+         \begin{bmatrix} 2 & -1 \end{bmatrix} \,
+         \begin{bmatrix} x_1(k) \\ x_2(k) \end{bmatrix}
+        \end{array}\right.
+       \end{displaymath}
+ \item hence in scalar form
+       \begin{displaymath}
+        \left\{\begin{array}{rcl}
+         x_1(k) &=&  0.4 x_1(k-1) + 0.4 x_2(k-1) +    u(k-1)\\
+         x_2(k) &=& 0.05 x_1(k-1) + 0.3 x_2(k-1) + 0.5u(k-1)\\
+         y(k)   &=&    2 x_1(k-1) -     x_2(k-1)
+        \end{array}\right.
+       \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (c)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item The transfer function $G(z)$ is $c(zI-A)^{-1}b+d$, hence
+       \begin{itemize}
+       \item[] \begin{itemize}[<+-| alert@+>]
+               \item[$G(z)$] \vspace{1mm}
+                    $= \begin{bmatrix} 2 & -1 \end{bmatrix} \,
+                       \begin{bmatrix} z-0.4 & -0.4 \\
+                       -0.05& z-0.3 \end{bmatrix}^{-1} \,
+                       \begin{bmatrix} 1 \\ 0.5 \end{bmatrix}
+                       +0
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{1}{(z-0.5)(z-0.2)}
+                       \begin{bmatrix} 2 & -1 \end{bmatrix} \,
+                       \begin{bmatrix} z-0.3 & 0.4 \\
+                       0.05& z-0.4 \end{bmatrix} \,
+                       \begin{bmatrix} 1 \\ 0.5 \end{bmatrix}
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{1}{(z-0.5)(z-0.2)}
+                       \begin{bmatrix} 2z-0.65 &-z+1.2 \end{bmatrix} \,
+                       \begin{bmatrix} 1 \\ 0.5 \end{bmatrix}
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{1.5z-0.05}{(z-0.5)(z-0.2)}.
+                    $
+               \end{itemize}
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (d)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We have\\
+       $u(0) = 0, \quad u(1) = 0.4, \quad u(2) = 0.8, \quad u(3) = 1.2, \, \ldots$
+ \item We need to iteratively apply the state and output equations, whence
+       \begin{itemize}
+       \item[] \begin{itemize}[<+-| alert@+>]
+               \item[$k=0$:] \vspace{1mm} 
+                    $\left\{\begin{array}{rll}
+                     x(0) &= \begin{bmatrix} 2 \\ 1 \end{bmatrix} (\text{given}) \\
+                     y(0) &= \begin{bmatrix} 2 & -1 \end{bmatrix} \,
+                             \begin{bmatrix} 2 \\ 1 \end{bmatrix}
+                          &= 3
+                     \end{array}\right.
+                    $
+               \item[$k=1$:] \vspace{1mm} 
+                    $\left\{\begin{array}{rll}
+                     x(1) &= \begin{bmatrix} 0.4 & 0.4 \\ 0.05 & 0.3 \end{bmatrix} \,
+                             \begin{bmatrix} 2 \\ 1 \end{bmatrix}
+                            +\begin{bmatrix} 1 \\ 0.5 \end{bmatrix} \cdot 0
+                          &= \begin{bmatrix} 1.2 \\ 0.4 \end{bmatrix}\\
+                     y(1) &= \begin{bmatrix} 2 & -1 \end{bmatrix} \,
+                             \begin{bmatrix} 1.2 \\ 0.4 \end{bmatrix}
+                          &= 2
+                     \end{array}\right.
+                    $
+               \item[$k=2$:] \vspace{1mm} 
+                    $\left\{\begin{array}{rll}
+                     x(1) &= \begin{bmatrix} 0.4 & 0.4 \\ 0.05 & 0.3 \end{bmatrix} \,
+                             \begin{bmatrix} 1.2 \\ 0.4 \end{bmatrix}
+                            +\begin{bmatrix} 1 \\ 0.5 \end{bmatrix} \cdot 0.4
+                          &= \begin{bmatrix} 1.04 \\ 0.38 \end{bmatrix}\\
+                     y(1) &= \begin{bmatrix} 2 & -1 \end{bmatrix} \,
+                             \begin{bmatrix} 1.04 \\ 0.38 \end{bmatrix}
+                          &= 1.7
+                     \end{array}\right.
+                    $
+               \end{itemize}
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Addendum}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We define some signals useful for the following.
+       \begin{itemize}[<+-| alert@+>]
+       \item Impulse (precisely, \TC{unit} impulse as the value is 1):
+             \begin{displaymath}
+              imp(k) = \begin{cases} 1 & k=0 \\ 0 & \text{otherwise} \end{cases}
+             \end{displaymath}
+       \item Step (\TC{unit} step, amplitude is 1):
+             \begin{displaymath}
+              step(k) = \begin{cases} 1 & k \geq 0 \\ 0 & \text{otherwise} \end{cases}
+             \end{displaymath}
+       \item Ramp(\TC{unit} ramp, slope is 1):
+             \begin{displaymath}
+              ramp(k) = k\; step(k) = \begin{cases} k & k \geq 0 \\ 0 & \text{otherwise} \end{cases}
+             \end{displaymath}
+       \end{itemize}
+ \item Quite frequently ``unit'' is omitted, e.g. ``step response'' actually\\
+       means ``unit step response''.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Proposed exercise 01}
+\framesubtitleTC{Try this at home, ask questions next time if needed}
+\myPause
+ Given the DT LTI dynamic system described in the state space by
+ \begin{displaymath}
+  A = \begin{bmatrix} 0.5 & 0 \\ 2 & -0.3 \end{bmatrix}, \quad
+  b = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad
+  c = \begin{bmatrix} 0 & 4 \end{bmatrix}, \quad
+  d = 1,
+ \end{displaymath}
+ \begin{itemize}[<+-| alert@+>]
+ \item[(a)] discuss its stability,
+ \item[(b)] express it in scalar form,
+ \item[(c)] compute its transfer function,
+ \item[(d)] compute the first three values ($k=0,1,2$) of its response to
+            \begin{displaymath}
+             x(0) = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad
+             u(k) = 2 step(k).
+            \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitleTC{But how can we check our results?}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item With the symbolic package wxMaxima:
+       \begin{verbatim}
+        A  : matrix([0.4,0.4],[0.05,0.3]);
+        b  : matrix([1],[0.5]);
+        c  : matrix([2,-1]);
+        d  : 0;
+        G  : factor(c.invert(z*ident(2)-A).b+d);
+        Gr : rat(G,z);
+        x0 : matrix([2],[1]);
+        y0 : c.x0;
+        x1 : A.x0+b*0;   /* the 0   is u(0) */
+        y1 : c.x1;
+        x2 : A.x1+b*0.4; /* the 0.4 is u(1) */
+        y2 : c.x2;
+       \end{verbatim}
+
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{But how can we check our results?}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We are learning (the bit we need of) wxMaxima by example.
+ \item For the moment:
+       \begin{itemize}[<+-| alert@+>]
+       \item you SET with \texttt{:}, \texttt{=} is for equations,
+       \item \texttt{[} and \texttt{]} delimit a list,
+       \item matrices are defined with \texttt{matrix} as one list per row,
+       \item you multiply scalars (or by a scalar) with \texttt{*}, matrices \& vectors with \texttt{.} (period), 
+       \item \texttt{ident(n)} is identity of dimension n,
+       \item \texttt{invert} is self-explanatory, you also have \texttt{transpose}, \texttt{determinant},\\
+             \texttt{eigenvalues}, \texttt{eigenvectors} and much more,
+       \item \texttt{factor} attempts to factor an expression, \texttt{rat(expr,var)} to express\\
+             \texttt{expr} rationally wrt \texttt{var};
+       \item enjoy \smiley...
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Takeaways}
+\framesubtitleTC{from exercise 01 (and the proposed one)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item A transfer function is the ratio of two polynomials.
+ \item We call the roots of its numerator the \TC{zeroes}.
+ \item We call the roots of its denominator the \TC{poles}. 
+ \item The poles are eigenvalues of $A$.
+ \item The degree of the numerator is at most equal to that of the denominator,
+ \item and equal iff $d \neq 0$ (you will see this in the proposed exercise, try to\\
+       prove it holds true in general).
+ \item We call the number of poles minus that of zeroes the \TC{relative degree}\\
+       of the system.
+ \end{itemize}
+\end{frame}
+

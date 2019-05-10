@@ -1,0 +1,47 @@
+\begin{frame}
+\frametitleTC{Informal overview of our main points about feedback}
+\framesubtitleTC{i.e., let us grasp intuitively ideas that we are then going to treat mathematically}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Preliminary -- let us introduce (for the moment, informally) the \TC{one-step advance operator} $z$:
+       \begin{displaymath}
+        z\nu(k) := \nu(k+1) \qquad\qquad \text{whatever $\nu$ is}.
+       \end{displaymath}
+ \item This allows for a compact way to write LTI systems without evidencing the state (but it is there!).
+ \item Suppose for example that we have a system with input $u$ and output $y$, ruled by
+       \begin{displaymath}
+        y(k) = ay(k-1)+bu(k-1),
+       \end{displaymath}
+       where clearly the state is the previous value of $y$;
+ \item we can re-write $y(k+1)=ay(k)+bu(k)$ in the form
+       \begin{displaymath}
+        (z-a)y(k) = bu(k).
+       \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Informal overview of our main points about feedback}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Rearranging -- remember the \emph{operatorial} meaning of $z$ -- we get
+       \begin{displaymath}
+        y(k) = \frac{b}{z-a}u(k)
+       \end{displaymath}
+\item[] and we can define the \TC{transfer function} notation (rigorous math on this later on),\\
+       that expresses the system as an operator:
+       \begin{itemize}[<+-| alert@+>]
+       \item we set
+             \begin{displaymath}
+               G(z) = \frac{b}{z-a},
+             \end{displaymath}
+       \item[] and in force of this
+             \begin{displaymath}
+              y(k) = G(z)u(k) \quad \text{means} \quad y(k) = ay(k-1)+bu(k-1).
+             \end{displaymath}
+       \end{itemize}
+ \item \vfill May not look so useful at the moment, but you will see later on\\
+       how handy transfer functions are to determine controllers.
+ \end{itemize}
+\end{frame}

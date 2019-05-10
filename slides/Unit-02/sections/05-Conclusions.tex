@@ -1,0 +1,70 @@
+\section{Conclusions}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (1/2)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Feedback can counteract model errors and disturbances, even without measuring them.
+ \item This is a particularly counter-intuitive idea, but one of the major strengths of control: keep this in mind.
+ \item Feedback can stabilise an unstable system...
+ \item ...or more precisely, close a loop around an unstable system so that the \TC{compound} be stable.
+ \item A dynamic system can be represented in \TC{state space} form.
+ \item One can compute equilibria and motions from that representation.
+ \item Equilibria can be \TC{asymptotically stable}, \TC{stable} or \TC{unstable}.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (2/2)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item In the LTI case, the initial state and the input combine their effects linearly.
+ \item In the LTI case, stability is a property of the system.
+ \item A LTI system is represented in state space form as $(A,b,c,d)$.
+ \item Its stability only depends on the eigenvalues of $A$.
+ \item By introducing the \TC{one-step advance operator} $z$ we can write a DI LTI system\\
+       in \TC{transfer function} form.
+ \item Transfer functions can be used as blocks in \TC{block diagrams}\\
+       to represent systems made of interconnected subsystems.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Next step}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Go through a practice session
+       \begin{itemize}[<+-| alert@+>]
+       \item to play around with dynamic systems, mostly DT LTI,
+       \item and start to get in touch with useful software.
+       \end{itemize}
+ \item \vfill Your assignments prior to that session:
+       \begin{itemize}[<+-| alert@+>]
+       \item positively review your notes and ask questions at the beginning of the session,\\
+             otherwise it will be practically useless;
+       \item install Scilab (\texttt{www.scilab.org}),\\
+             OpenModelica (\texttt{www.openmodelica.org}),\\
+             and wxMaxima (\texttt{wxmaxima-developers.github.io/wxmaxima}).
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\section{}
+{
+\setbeamertemplate{headline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\begin{frame}[noframenumbering]
+ \vspace{20mm}\Huge{Discussion open}
+\end{frame}
+}
+

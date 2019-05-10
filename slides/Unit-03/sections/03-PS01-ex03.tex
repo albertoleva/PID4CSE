@@ -1,0 +1,198 @@
+\section{Exercise 03}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Problem}
+\framesubtitleTC{This one we solve together}
+ Given the two DT LTI dynamic systems
+ \begin{displaymath}
+  S_1:
+  \left\{\begin{array}{rcl}
+   x_1(k) &=& 0.5x_1(k-1)+u(k-1)\\
+   x_2(k) &=& 0.5x_2(k-1)+u(k-1)\\
+   y(k)   &=& x_1(k)+x_2(k)
+  \end{array}\right. \quad
+  S_2:
+  \left\{\begin{array}{rcl}
+   x_1(k) &=& 0.4x_1(k-1)+u(k-1)\\
+   x_2(k) &=& 0.8x_2(k-1)+u(k-1)\\
+   y(k)   &=& x_2(k)
+  \end{array}\right.
+ \end{displaymath}
+
+ \begin{itemize}[<+-| alert@+>]
+ \item[(a)] compute their transfer functions,
+ \item[(b)] comment on the result.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (a)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We start with $S_1$:
+       \begin{itemize}
+       \item[] \begin{itemize}[<+-| alert@+>]
+               \item[$G(z)$] \vspace{1mm}
+                    $= \begin{bmatrix} 1 & 1  \end{bmatrix} \,
+                       \begin{bmatrix} z-0.5 & 0 \\
+                                       0     & z-0.5 \end{bmatrix}^{-1} \,
+                       \begin{bmatrix} 1 \\ 1 \end{bmatrix}
+                       +0
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{1}{(z-0.5)^2}
+                       \begin{bmatrix} 1 & 1 \end{bmatrix} \,
+                       \begin{bmatrix} z-0.5 & 0 \\
+                                       0     & z-0.5 \end{bmatrix} \,
+                       \begin{bmatrix} 1 \\ 1 \end{bmatrix}
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{1}{(z-0.5)^2}
+                       \begin{bmatrix} z-0.5 & z-0.5 \end{bmatrix} \,
+                       \begin{bmatrix} 1 \\ 1 \end{bmatrix}
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{2\cancel{(z-0.5)}}{(z-0.5)^{\cancel{2}}} \qquad \qquad
+                       \TC{\leftarrow \text{zero/pole \underline{cancellation}}}
+                    $
+               \item[] \vspace{1mm}
+                    $= \cfrac{2}{z-0.5}.
+                    $
+               \end{itemize}
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitleTC{Solution}
+\framesubtitleTC{Item (a)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item And now $S_2$:
+       \begin{itemize}
+       \item[] \begin{itemize}[<+-| alert@+>]
+               \item[] wxMaxima, we are lazy \smiley
+                       \begin{verbatim}
+A:matrix([0.4,0],[0,0.8]);
+b:matrix([1],[1]);
+c:matrix([0,1]);
+G:c.invert(z*ident(2)-A).b;
+                       \end{verbatim}
+               \item[] \vspace{1mm}
+                    $ G(z) = \cfrac{1}{z-0.8}.
+                    $
+               \end{itemize}
+               \item \vspace{3mm}Another case with cancellation: the characteristic polynomial of $A$\\
+                     has degree 2, the denominator of $G(z)$ has degree 1.
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (b) -- comments on the $S_1$ case}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item In fact $S_1$ is a ``fake'' 2nd order system, since as far as induced motions are\\
+       concerned  $x_1$ and $x_2$ are the same, and the system is \TC{input-output} (i.e, as far\\
+       as we only look at $u$ and $y$) \TC{equivalent} to a 1st order one:
+       \begin{displaymath}
+        \left\{\begin{array}{rcl}
+         x_1(k) &=& 0.5x_1(k-1)+u(k-1)\\
+         x_2(k) &=& 0.5x_2(k-1)+u(k-1)\\
+         y(k)   &=& x_1(k)+x_2(k)
+        \end{array}\right. \quad
+        \Rightarrow \quad
+        \left\{\begin{array}{rcl}
+         x(k) &=& 0.5x(k-1)+u(k-1)\\
+         y(k) &=& 2x(k)
+        \end{array}\right.
+        \end{displaymath} 
+        apparently with
+        \begin{displaymath}
+         G(z)=\cfrac{2}{z-0.5}.
+        \end{displaymath} 
+ \item This system cannot move in the whole $(x_1,x_2)$ plane, but only\\
+       on the straight line $x_1=x_2$.
+ \item In general, systems like this can only move on a \TC{subspace} (line)\\
+       of their \TC{state space} (plane).
+ \item We call them \TC{not fully reachable} (the term should be intuitive).
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Solution}
+\framesubtitleTC{Item (b) -- comments on the $S_2$ case}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Also $S_2$ is a ``fake'' 2nd order system, because however $x_1$ moves, $y$ does not
+       reveal this, and thus we can reduce this system as well to a 1st order one:
+       \begin{displaymath}
+        \left\{\begin{array}{rcl}
+         x_1(k) &=& 0.4x_1(k-1)+u(k-1)\\
+         x_2(k) &=& 0.8x_2(k-1)+u(k-1)\\
+         y(k)   &=& x_2(k)
+        \end{array}\right. \quad
+        \Rightarrow \quad
+        \left\{\begin{array}{rcl}
+         x(k) &=& 0.8x(k-1)+u(k-1)\\
+         y(k) &=& x(k)
+        \end{array}\right.
+        \end{displaymath} 
+        apparently with
+        \begin{displaymath}
+         G(z)=\cfrac{1}{z-0.8}.
+        \end{displaymath} 
+ \item In this system one state variable does not influence the output.
+ \item We call such systems \TC{not fully observable} (the term should be\\
+       once again intuitive).
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Proposed exercise 03}
+\framesubtitleTC{Try this at home, ask questions next time if needed}
+\myPause
+ Take the two system of exercise 03, and turn them into block diagrams.\\
+ \vspace{5mm}Analyse those diagrams along the idea that parts of the system are not influenced
+ by the input, or do not influence the output. 
+\end{frame}
+
+
+
+\begin{frame}
+\frametitleTC{Takeaways}
+\framesubtitleTC{from exercise 03 (and the proposed one)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item There are cases in which a system cannot move in all its state space, or equivalently,
+       some state variables are not influenced by the input.
+ \item Suggestion for reflections: why ``equivalently''?
+ \item There are also cases in which some state variables do not influence the output.
+ \item There are also cases where both facts occur.
+ \item We detect this because in computing the transfer function we get\\
+       \TC{cancellations}.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Takeaways}
+\framesubtitleTC{from exercise 03 (and the proposed one)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Do we need to bother?
+ \item Yes, because this collectively means that a system may have \TC{hidden parts}\\
+       (things the transfer function does not tell).
+ \item In setting up controls, we must be careful to not generate UNSTABLE hidden parts.
+ \item We do not mind about asymptotically stable ones, because their effect\\
+       vanishes with their free motion.
+ \end{itemize}
+\end{frame}
+
+
+

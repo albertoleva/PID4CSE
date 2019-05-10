@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+
+\draw[draw=none,fill=red!20!white]
+     (0,1.5) rectangle (9.8,2.5);
+
+\draw[->,thick](0,0)
+     -- node[pos=0.97,below]{time}
+     (10,0);
+\draw[->,thick](0,0) -- (0,3);
+
+\draw[red, thick] (0,2)
+     -- node[pos=0,left,yshift=-4]
+     {Equilibrium $\overline{x}$}
+     (9.8,2);
+
+\draw[thick,smooth,blue!80!black,
+      samples=50,domain=0:9.8,variable=\t]
+      plot({\t},
+           {2.1+0.53*sin(80*(\t+0.2))
+                    *exp(-0.4*\t)});
+
+\node[blue!80!black]
+      at (4,2.75) (xDcap)
+     {Perturbed motion $x_{\Delta}$};
+
+\draw[blue!80!black]
+     (xDcap.182) -- (1.5,2.3);
+
+\draw[magenta!90!black,ultra thick]
+     (1.4,2) --++ (0,-0.5);
+\node[magenta!90!black]
+     at (3,1) (eCap) {$\epsilon$};
+\draw[magenta!90!black]
+     (1.4,1.75)
+     to [out=0,in=180] (eCap.west);
+
+
+\draw[green!80!black,ultra thick]
+     (0.01,2) --++ (0,0.25);
+\node[green!80!black]
+     at (3,0.5) (deCap)
+     {$\delta_{\epsilon}$};
+\draw[green!80!black]
+     (0,2.125)
+     to [out=0,in=180] (deCap.west);
+
+\end{tikzpicture}

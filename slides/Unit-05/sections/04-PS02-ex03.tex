@@ -1,0 +1,48 @@
+\section{Exercise 03}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Direct synthesis for disturbance rejection}
+\framesubtitleTC{In fact, slightly more than a remark}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item The loop  and the closed-loop transfer functions are tied to one another: since
+       \begin{displaymath}
+        G_{yw}(z) = \frac{L(z)}{1+L(z)}, \qquad
+        G_{yd}(z) = \frac{1}{1+L(z)},
+       \end{displaymath}
+ \item we have
+       \begin{displaymath}
+         L(z) = \frac{G_{yw}(z)}{1-G_{yw}(z)}, \quad
+         L(z) = \frac{1-G_{yd}(z)}{G_{yd}(z)}, \quad
+         G_{yw}(z)+G_{yd}(z) = 1.
+       \end{displaymath}
+ \item As a consequence,
+       \begin{displaymath}
+        G_{yw}(z) = \frac{1-\alpha}{z-\alpha} \quad \Rightarrow \quad
+        G_{yd}(z) = 1-\frac{1-\alpha}{z-\alpha}
+                  = \frac{z-1}{z-\alpha}
+       \end{displaymath}
+       and we are just back to the tracking problem.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Direct synthesis for disturbance rejection}
+\framesubtitleTC{In fact, slightly more than a remark}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We can revisit the previous exercise focusing on the disturbance response.
+ \item In doing so, it is interesting to also look at the behaviour of the \TC{control signal}\\
+       (in our Modelica diagram, \texttt{C.y}).
+ \item Observe how a faster rejection -- like a faster tracking -- requires a larger peak\\
+       in that signal (which is quite intuitive).
+ \item As we shall see, this may lead to require something that the system -- or more\\
+       precisely, the \TC{actuator} -- cannot do (e.g., allocate more cores than those\\
+       aboard the machine).
+ \item Incidentally, this means that \TC{architectures need sizing for fast enough\\
+       reaction to TIME-VARYING \emph{stimuli}, not just for a worst-case\\
+       CONSTANT load} --- hence one has to know about dynamics.
+ \item \vfill Enough on this for the moment, please experiment at home \& report.
+ \end{itemize}
+\end{frame}

@@ -1,0 +1,80 @@
+\section{PI in the class}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Transfer function}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Let us reload our systems theory knowledge:
+       \begin{displaymath}
+        \left\{\begin{array}{rcl}
+         u_P(k) &=& K_P \, e(k) \\
+         u_I(k) &=& u_I(k-1)+ K_I e(k) \\
+         u(k)   &=& u_P(k)+u_I(k)
+        \end{array}\right. \quad
+        {\Rightarrow} \quad
+        \left\{\begin{array}{rcl}
+         zu_I(k) &=& u_I(k) + zK_I e(k) \\
+         u(k)    &=& u_I(k) + K_P \, e(k)
+        \end{array}\right.
+       \end{displaymath}
+ \item Hence
+       \begin{displaymath}
+        u(k) = \left( \frac{z}{z-1}K_I + K_P \right) e(k)
+       \end{displaymath}
+ \item and finally
+       \begin{displaymath}
+        C_{PI}(z) = \frac{u(k)}{e(k)} = \frac{(K_P+K_I)z-K_P}{z-1},
+       \end{displaymath}
+       with one zero and one pole in $z=1$, the latter produced by the\\
+       integral action.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Transfer function}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Reformulating we get
+       \begin{displaymath}
+        C_{PI}(z) = \frac{(K_P+K_I)z-K_P}{z-1}
+                  = \left( K_P+K_I \right) \frac{z-\frac{K_P}{K_P+K_I}}{z-1}
+       \end{displaymath}
+ \item that is, the compact expression
+       \begin{displaymath}
+        C_{PI}(z) = K \frac{z-\zeta}{z-1}, \qquad
+        K         = K_P+K_I, \quad
+        \zeta     = \frac{K_P}{K_P+K_I}.
+       \end{displaymath}
+       that is well suited for a cancellation-based tuning policy like direct\\
+       synthesis.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{When is PI control advisable?}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item When the process is \TC{dominantly} first-order, i.e., when its step response is well approximated
+       by $\mu(1-p^k)$.
+ \item In that case we know that $P(z)=\mu/(z-p)$ is a good model, and if we want e.g.
+       $G_{yw}^{\circ}(z)=(1-\alpha)/(z-\alpha)$ we can first determine a desired loop transfer function
+       \begin{displaymath}
+        L^{\circ}(z) = \frac{G_{yw}^{\circ}(z)}{1-G_{yw}^{\circ}(z)}
+                     = \frac{\frac{1-\alpha}{z-\alpha}}{1-\frac{1-\alpha}{z-\alpha}}
+                     = \frac{1-\alpha}{z-1}
+       \end{displaymath}
+ \item Then we determine the controller (which we know to be structurally a PI) as
+       \begin{displaymath}
+        C(z) = \frac{L^{\circ}(z)}{P(z)} = \frac{1-\alpha}{z-1}\,\frac{z-p}{\mu}
+       \end{displaymath}
+ \item[] readily obtaining its parameters
+       \begin{displaymath}
+        \zeta = p, \quad
+        K     = \frac{1-\alpha}{\mu}.
+       \end{displaymath}
+ \end{itemize}
+\end{frame}

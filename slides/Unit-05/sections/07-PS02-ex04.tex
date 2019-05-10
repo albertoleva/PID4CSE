@@ -1,0 +1,36 @@
+\section{Exercise 04}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{PI tuning}
+\framesubtitleTC{part 1}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Given the first-order process
+       \begin{displaymath}
+        P(z) = \frac{2}{(z-0.95)}
+       \end{displaymath}
+ \item[(a)] tune a PI as we just discussed for two/three response speeds,
+ \item[(b)] test the results in Modelica.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{PI tuning}
+\framesubtitleTC{part 2}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Given the processes
+       \begin{displaymath}
+        P_1(z) = \frac{2}{(z-0.95)(z-0.1)}, \quad
+        P_2(z) = \frac{2}{(z-0.95)(z-0.8)},
+       \end{displaymath}
+ \item[(a)] plot their step responses and say which one is more ``dominantly first-order'',
+ \item[(b)] relate your conclusions to the position of the pole not in $z=0.95$,
+ \item[(c)] tune a PI for both systems as if they were first-order with only the\\
+            slower pole $z=0.95$,
+ \item[(b)] test the results in Modelica and comment on the possibility of\\
+            reaching ``fast'' responses, depending on the position of the\\
+            neglected pole.
+ \end{itemize}
+\end{frame}

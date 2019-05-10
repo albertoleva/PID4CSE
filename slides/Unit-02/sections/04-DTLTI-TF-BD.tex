@@ -1,0 +1,146 @@
+\section{DT LTI -- transfer function and block diagrams}
+
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Preliminary}
+\framesubtitleTC{for an alternative system representation, particularly useful for control}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Let us introduce the \TC{one-step advance operator} $z$:
+       \begin{displaymath}
+        z\nu(k) := \nu(k+1) \qquad\qquad \text{whatever $\nu$ is}.
+       \end{displaymath}
+ \item This allows for a compact way to write LTI systems without evidencing the state (but it is there!).
+ \item Suppose for example that we have a system with input $u$ and output $y$, ruled by
+       \begin{displaymath}
+        y(k) = ay(k-1)+bu(k-1),
+       \end{displaymath}
+       where clearly the state is the previous value of $y$;
+ \item we can re-write $y(k+1)=ay(k)+bu(k)$ in the form
+       \begin{displaymath}
+        (z-a)y(k) = bu(k).
+       \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Preliminary}
+\framesubtitleTC{introducing the transfer function}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Rearranging -- remember the \emph{operatorial} meaning of $z$ -- we get
+       \begin{displaymath}
+        y(k) = \frac{b}{z-a}u(k)
+       \end{displaymath}
+\item[] and we can define the \TC{Transfer Function (TF)} notation, that expresses the system\\
+        as a compound operator built upon the elementary one $z$:
+       \begin{itemize}[<+-| alert@+>]
+       \item we write the system's transfer function $G(z)$ as
+             \begin{displaymath}
+               G(z) = \frac{b}{z-a},
+             \end{displaymath}
+       \item[] and in force of this
+             \begin{displaymath}
+              y(k) = G(z)u(k) \quad \text{means} \quad y(k) = ay(k-1)+bu(k-1).
+             \end{displaymath}
+       \end{itemize}
+ \item \vfill May not look so useful at the moment, but you will see later on\\
+       how handy transfer functions are to determine controllers.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{State space representation and transfer function}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Given the SS representation we saw, shift all times by one (which is legit as the system is TI):
+       \begin{displaymath}
+        \left\{
+         \begin{array}{rlll}
+          x(k+1) &= A x(k)   + b u(k)\\
+          y(k+1) &= c x(k+1) + d u(k+1) 
+         \end{array}
+        \right.
+       \end{displaymath} 
+ \item Apply the advance operator:
+       \begin{displaymath}
+        \left\{
+         \begin{array}{rl}
+          \textcolor{red}{z}x(k) &= A x(k) + b u(k)\\
+          \textcolor{red}{z}y(k) &= c \textcolor{red}{z}x(k) + d\textcolor{red}{z} u(k)
+         \end{array}
+        \right.
+       \end{displaymath} 
+ \item Drop useless $z$'s and rearrange ($I$ is identity matrix of dimension $n$):
+       \begin{displaymath}
+        \left\{
+         \begin{array}{rl}
+          (zI-A)x(k) &= b u(k)\\
+          y(k)       &= c x(k) + d u(k)
+         \end{array}
+        \right.
+       \end{displaymath} 
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{State space representation and transfer function}
+\framesubtitleTC{once again, sticking to the SISO case}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Solve state equation for $x(k)$:
+       \begin{displaymath}
+        x(k) = (zI-A)^{-1} b u(k)
+       \end{displaymath} 
+ \item Substitute into output equation and rearrange:
+       \begin{displaymath}
+        y(k) = \textcolor{red}
+                         {\underbrace{\left[c(zI-A)^{-1} b +d \right]}
+                                    _{\text{Transfer function } G(z)}
+                         } \; u(k)
+       \end{displaymath} 
+ \item We then define the transfer function of the generic SISO DT LTI\\
+       system $(A,b,c,d)$ as
+       \begin{displaymath}
+        G(z) = c(zI-A)^{-1} b +d.
+       \end{displaymath} 
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Block diagrams}
+\framesubtitleTC{Preliminaries}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Block diagrams (BDs) are a graphical formalism to represent dynamic systems, that we see here limited to the
+      DT LTI class.
+\item They are useful to study \TC{interconnected} systems, i.e., compounds of \TC{subsystems} (e.g., a controller
+      and the controlled object).
+\item Important \emph{caveat}, that we state right from the beginning:
+      \begin{itemize}[<+-| alert@+>]
+      \item    a BD MUST NOT BE CONFUSED with a flow diagram;
+      \item [] although subsystems have inputs and outputs,
+      \item [] their compound comes from assembling \TC{equations}.
+      \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Block diagram components}
+\framesubtitleTC{Block and summation node}
+\myPause
+\begin{center}
+ \input{./Unit-02/img/BlockTF.tex}
+\end{center} \myPause
+\begin{itemize}[<+-| alert@+>]
+\item \TC{Block} (left):\\
+      an LTI SISO system with the indicated transfer function -- in the shown\\
+      example, the \TC{equation} $G(z)u(k)-y(k)=0$.
+\item \TC{Summation node} (right):\\
+      a summation expression -- in the shown example, the \TC{equation}
+      $u_1(k)-u_2(k)+u_3(k)-y(k)=0$.
+\end{itemize}
+\end{frame}
+

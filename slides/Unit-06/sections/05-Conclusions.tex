@@ -1,0 +1,50 @@
+\section{Conclusions}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (1/2)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Distinguishing \TC{pure DT} and \TC{sampled-signals} cases.
+ \item Interpreting a CT model in the DT domain by replacing the time derivative\\
+       with the one-step incremental ratio, and \emph{vice versa}.
+ \item Understanding that control needs SIMPLE models, that these can come from both\\
+       knowledge of the phenomenon and data, and that in general complexity is NOT a merit if not justified.
+ \item Being cautious -- not necessarily negative, but cautious -- in the face of ``benchmark sets'' not qualified in a system-theoretical manner. 
+ \item Tuning a PI controller for a dominantly first-order asymptotically\\
+       stable process.
+ \item Dealing with a (purely) integrating process.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (2/2)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Understanding the role of the P, I, and D actions (prompt reaction, zero\
+       steady-state error, error anticipation).
+ \item Understanding \TC{(anti)windup} and \TC{tracking}.
+ \item Writing a PI algorithm as procedural code.
+ \item Writing a PID algorithm and discussing arbitrary choices as for state management\\
+      (one constraint on $u$, two past values to determine for $u_I$ and $u_D$).
+ \item \vfill Next comes a practice session.
+ \end{itemize}
+\end{frame}
+
+\section{}
+{
+\setbeamertemplate{headline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\begin{frame}[noframenumbering]
+ \vspace{20mm}\Huge{Discussion open}
+\end{frame}
+}
+

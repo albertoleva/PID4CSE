@@ -1,0 +1,80 @@
+\section{Foreword and prerequisites}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{What we are going to do together}
+\framesubtitleTC{in a nutshell}
+\myPause
+\begin{quote}
+If you search the literature for ``control in computers'', you will find first that there is a lot of material, and then that the so-called ``PID'' controller is one of the most widely employed.\\
+However, as we shall see, an incorrect use of that object can be as disastrous as a good one beneficial. Hence you need to understand and master the underlying principles, that is, the essentials of the systems and feedback control theory.\\
+This activity will make you capable in the first place of using PID control knowledgeably, and as a by-product, will also teach you what a dynamic model of a system is.\\
+In turn, this is useful for many purposes, including e.g. to detect\\
+when a problem cannot be tackled with a PID, and thus you need\\
+to learn more control, or ask for advice from a control specialist,\\
+or both.
+\end{quote}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Prerequisites}
+\framesubtitleTC{(1/3) mathematics}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Basic knowledge of differential/integral calculus:
+      \begin{itemize}[<.(1)->]
+      \item limit (finite and infinite),
+      \item derivative and integral in one variable.
+      \end{itemize}
+      \myPause
+\item Complex numbers and operations on them.
+\item Basic knowledge of matrix algebra:
+      \begin{itemize}[<.(1)->]
+      \item matrix operations,
+      \item determinant, inverse,
+      \item eigenvalues and eigenvectors.
+      \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitleTC{Prerequisites}
+\framesubtitleTC{(2/3) physics --- yes we do need a little bit for some examples}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Mass balance: the time derivative of the mass $M$ contained in a volume\\
+      (e.g., a tank) is the sum of the $n$ signed mass flowrates $w_i$ at the $n$ boundaries\\
+      (e.g., pipes) of that volume, that is,
+      \begin{displaymath}
+       \frac{dM(t)}{dt} = \sum_{i=1}^n w_i(t).
+      \end{displaymath}
+\item Energy balance: the time derivative of the energy $E$ contained in a volume\\
+      (e.g., a solid body) is the sum of the $n$ signed powers $q_i$ at the $n$\\
+      boundaries (e.g., surfaces) of that volume, that is,
+      \begin{displaymath}
+       \frac{dE(t)}{dt} = \sum_{i=1}^n q_i(t).
+      \end{displaymath}
+\item We evidently take the convention ``positive means entering''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Prerequisites}
+\framesubtitleTC{(3/3) physics --- yes we do need a little bit for some examples}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Convective/conductive heat transfer: the power $q_{ab}$ transferred form a body at temperature $T_a$
+      to another at temperature $T_b$ is proportional by a \emph{thermal conductance} $G_{ab}$ to the temperature
+      difference, that is,
+      \begin{displaymath}
+       q_{ab}(t) = G_{ab} \left( T_a(t)-T_b(t) \right).
+      \end{displaymath}
+\item Anticipation: later on we shall see more balances of the \emph{dynamic} type, i.e.,\\
+      taking the form``the time derivative of something equals the sum\\
+      of something else''.
+\item You may be surprised how frequent these are in computing systems,\\
+      hence how many different problems can be treated uniformly.
+\end{itemize}
+\end{frame}
+

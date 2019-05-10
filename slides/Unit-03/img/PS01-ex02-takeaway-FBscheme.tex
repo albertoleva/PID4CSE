@@ -1,0 +1,59 @@
+\tikzstyle{block} = [draw,rectangle,black,thick,
+   fill=yellow!20!white,
+   minimum width=8mm,minimum height=8mm,
+   text width=8mm,align=center]
+
+\tikzstyle{sum} = [draw,circle,black,thick,
+   fill=yellow!20!white, inner sep=1mm]
+
+\tikzstyle{sigin} = [anchor=east]
+
+\tikzstyle{sigout} = [anchor=west]
+
+\begin{tikzpicture}
+
+% frame to draw (1--7) ---------------------------------------------------------------------
+
+\node[sigin] (u) {$u(k)$};
+\node[block,right=10mm of u]
+     (b) {\large{$b$}};
+\node[sum,ultra thick,right=10mm of b,draw=blue!80!black]
+     (fb) {}; 
+\node[block,right=15mm of fb,draw=blue!80!black]
+     (dx)
+     {\textcolor{blue!80!black}{\large{$z^{-1}$}}};
+\node[block,below=10mm of dx,draw=blue!80!black]
+     (A) {\textcolor{blue!80!black}{\large{$A$}}};
+\node[block,above=10mm of dx]
+     (d) {\large{$d$}};
+\node[block,right=25mm of dx]
+     (c) {\large{$c$}};
+\node[sum, right=10mm of c]
+     (so) {};
+\node[sigout, right=10mm of so]
+     (y) {$y(k)$}; 
+
+\draw[->,thick] (u.east) -- (b.west);
+\draw[->,thick] (u.east) --++(5mm,0)
+     |- (d.west);
+\draw[->,ultra thick] (b.east) --
+     node[pos=0.70,below]{$+$} (fb.west);
+\draw[->,ultra thick,blue!80!black] (fb.east) --
+     node[pos=0.5,above]
+     {\textcolor{red}{$x(k+1)$}}
+     (dx.west);
+\draw[->,ultra thick] (dx.east) -- (c.west);
+\draw[->,ultra thick,blue!80!black] (dx.east) --
+     node[pos=1,above]
+     {\textcolor{red}{$x(k)$}}
+     ++(12.5mm,0)
+     |-(A.east);
+\draw[->,ultra thick,blue!80!black] (A.west) -|
+     node[pos=0.90,left]{$+$} (fb.south);
+\draw[->,thick] (d.east) -|
+     node[pos=0.90,left]{$+$} (so.north);
+\draw[->,thick] (c.east) --
+     node[pos=0.70,above]{$+$} (so.west);
+\draw[->,thick] (so.east) -- (y.west);
+
+\end{tikzpicture}

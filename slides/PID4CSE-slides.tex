@@ -1,0 +1,138 @@
+%%% for presentation
+\documentclass[pdf,aspectratio=1610]{beamer}
+
+%%% for handouts
+%\documentclass[handout,aspectratio=1610]{beamer}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=20mm]
+
+\usepackage{multimedia}
+\usepackage{comment}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage[makeroom]{cancel}
+\usepackage{wasysym}
+\usepackage{svg}
+\usepackage[absolute,overlay]{textpos}
+
+% TiKz
+\usepackage{tikz,xstring,siunitx,pgfplots,psfrag}
+\usetikzlibrary{shapes,arrows,matrix}
+\usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings}
+\usetikzlibrary{positioning,automata}
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=newest}
+\tikzstyle{block} = [draw, rectangle, minimum height=2em, minimum width=2em]
+\tikzstyle{sum} = [draw, circle, node distance=1.5cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+
+\definecolor{DarkGreen}{rgb}{0.087,0.537,0.259}
+\definecolor{Maroon}{rgb}{0.550,0.050,0.050}
+
+\newcommand{\TC}[1]{\textcolor{Maroon}{#1}}
+\newcommand{\DG}[1]{\textcolor{DarkGreen}{#1}}
+\newcommand{\DR}[1]{\textcolor{red!50!black}{#1}}
+\newcommand{\DB}[1]{\textcolor{blue!50!black}{#1}}
+\newcommand{\MB}[1]{\textcolor{blue!50!green!70!black}{#1}}
+\newcommand{\NC}[1]{#1}
+\newcommand{\frametitleTC}[1]{\frametitle{\TC{#1}}}
+\newcommand{\framesubtitleTC}[1]{\framesubtitle{\TC{#1}}}
+\newcommand{\myPause}{\pause}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\grn}[1]{\textcolor{DarkGreen}{#1}}
+\newcommand{\mgt}[1]{\textcolor{magenta}{#1}}
+
+\newcommand\blfootnote[1]{% footnote w/o marker
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% \cancel with coloured line
+\newcommand{\ccancel}[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}   % /
+\newcommand{\cbcancel}[2][black]{\renewcommand\CancelColor{\color{#1}}\bcancel{#2}} % \
+\newcommand{\cxcancel}[2][black]{\renewcommand\CancelColor{\color{#1}}\xcancel{#2}} % X
+
+% mark a frame containing (only) CC0 images using textpos -- adapt to your aspect ratio &Co.
+\setlength{\TPHorizModule}{0.01\textwidth}
+\setlength{\TPVertModule}{0.01\textheight}
+\textblockorigin{0mm}{0mm}
+\setlength{\parindent}{0pt}
+\newcommand{\mccz}{\begin{textblock}{5}(112,7){\TC{\small{$^\blacksquare$}}}\end{textblock}}
+
+
+\mode<presentation>
+\beamertemplatenavigationsymbolsempty
+
+\title[PID control for computer engineers]
+      {\textcolor{DarkGreen}{\huge{\textbf{PID Control for Computer Engineers}}}}
+\subtitle{\textcolor{DarkGreen}{\textbf{with a Systems and Control Theory micro-course in disguise}}}
+
+\author[$\;$A. Leva]
+       {\Large{Alberto Leva}\\%
+        \small{DEIB, Politecnico di Milano, Italy}\\%
+        \small{\texttt{alberto.leva@polimi.it}}
+       }
+
+\date{}
+
+\usecolortheme{seagull}
+\useoutertheme[subsection=false]{miniframes}
+\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+
+\setbeamerfont{alerted text}{series=\itshape}
+\setbeamercolor{normal text}{fg=darkgray}
+\setbeamercolor{alerted text}{fg=blue!40!black}
+
+\setbeamertemplate{footline}
+ {
+ \begin{beamercolorbox}{section in head/foot}
+ \vskip2pt
+ \insertshortauthor[width=0.10\textwidth]
+ \insertshorttitle[width=0.82\textwidth]
+ \insertframenumber / \inserttotalframenumber
+ \vskip2pt
+ \end{beamercolorbox}
+ }
+
+\logo{\includegraphics[height=3cm]{./logos/PID4CSE-logo.png}}
+
+\begin{document}
+
+{
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\begin{frame}[noframenumbering]
+\titlepage
+\end{frame}
+}
+
+\input{./Pro-Epi/Prologue.tex}
+
+\input{./Unit-01/Unit-01.tex}
+\input{./Unit-02/Unit-02.tex}
+\input{./Unit-03/Unit-03.tex}
+\input{./Unit-04/Unit-04.tex}
+\input{./Unit-05/Unit-05.tex}
+\input{./Unit-06/Unit-06.tex}
+\input{./Unit-07/Unit-07.tex}
+\input{./Unit-08/Unit-08.tex}
+
+\input{./Pro-Epi/Epilogue.tex}
+
+\end{document}
+

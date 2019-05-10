@@ -1,0 +1,105 @@
+\section{PI for the man in the road}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Foreword}
+\framesubtitleTC{PI (Proportional plus Integral) control as an intuitive idea}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We now introduce PI control in a totally intuitive manner, ie., the way\\
+       ``the man in the road'' would do --- and incidentally, the way somebody\\
+       says it was initially invented (we are not discussing this).
+ \item The purpose of this part of our activity is twofold:
+       \begin{itemize}[<+-| alert@+>]
+       \item show that PI control is intuitive indeed,
+       \item but also that intuition without theory is often misleading.    
+       \end{itemize}
+ \item Exercise: as we proceed, try to spot the flaws (not necessarily true ``errors''\\
+       but symptoms of a partial viewpoint) in the reasoning by the man\\
+       in the road and take note of them...
+ \item[] \vspace{-0.75mm}...and then, when we re-visit the matter formally later on, check\\
+       your notes to see if you spotted \underline{all} such flaws.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Intuition \# 1}
+\framesubtitleTC{Proportional control}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item The man in the road says: \blue{``the farther the controlled variable $y$ is\\
+       from the reference $w$, the more intense the control action $u$ has to be''}.
+ \item \vfill Naming $e$ the error $w-y$, this introduces the \TC{Proportional (P) action}
+       \begin{displaymath}
+        u_P(k) = K_P \, e(k),
+       \end{displaymath}
+       where $K_P$ is a configuration parameter.
+ \item Seems definitely a good idea.
+ \item However $u_P$ is nonzero only if so is $e$, hence with P action alone
+       \begin{itemize}[<+-| alert@+>]
+       \item either $y$ can stay at ANY value ($w$ can be anything) with $u=0$,
+       \item or one has to accept an error to have a control action.    
+       \end{itemize} 
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Intuition \# 2}
+\framesubtitleTC{Introducing an automatic bias}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Alternatively, a bias can be included in $u$ so as to zero the error:
+       \begin{displaymath}
+        u(k) = u_P(k)+ u_{bias}.
+       \end{displaymath}
+ \item But how to compute $u_{bias}$?
+ \item The man in the road says: \blue{``automatically; if the error is zero keep it constant\\
+       because you found the right value, otherwise increase or decrease it at each step,\\
+       proportionally to the error''}.    
+ \item This means
+       \begin{displaymath}
+        u_{bias}(k) = u_{bias}(k-1)+ K_{bias} e(k),
+       \end{displaymath}
+       where $K_{bias}$ is another configuration parameter.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Intuition \# 3}
+\framesubtitleTC{Toward integral control}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item The main in the road continues: \blue{``the automatic bias is also consistent with the\\
+       idea that if the error does not diminish this means that the system is reluctant\\
+       to obey to the control action, hence the said action has to become stronger\\
+       and stronger''}. 
+ \item In fact, $u_{bias}(k)$ as just defined, sums each new error weighed by $K_{bias}$, which comes
+       to determine the ratio of the control variation \TC{rate} to the value of the error.
+ \item We can say that this is \TC{integrating} the error, and name the corresponding control component
+       the \TC{Integral (I) action}
+       \begin{displaymath}
+        u_I(k) = u_I(k-1)+ K_I e(k),
+       \end{displaymath}
+        with $K_I$ as the second controller configuration parameter besides $K_P$.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{The PI control law}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item The control signal is the sum of the P and the I action:
+       \begin{displaymath}
+        \left\{\begin{array}{rcl}
+         u_P(k) &=& K_P \, e(k) \\
+         u_I(k) &=& u_I(k-1)+ K_I e(k) \\
+         u(k)   &=& u_P(k)+u_I(k)
+        \end{array}\right.
+       \end{displaymath}
+ \item \vfill Intuition basically stops here.
+ \item To understand how to give a value to $K_P$ and $K_I$ (or to the more\\
+       comfortable equivalent parameters we shall define in the following)\\
+       we must resort to theory.
+ \end{itemize}
+\end{frame}

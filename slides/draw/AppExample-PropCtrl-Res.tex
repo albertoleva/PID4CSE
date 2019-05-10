@@ -1,0 +1,72 @@
+\tikzstyle{block} = [draw, rectangle, minimum height=2.5em, minimum width=2.8em]
+\tikzstyle{sum} = [draw, circle, node distance=0]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{junction} =[circle,inner sep=1pt,minimum size=0.1mm,fill=black,draw=black]
+
+\begin{tikzpicture} [auto, node distance=2cm]
+
+\def\colC{green!40!black};
+\def\fillC{green!20!white};
+
+\def\colS{magenta!80!black};
+\def\fillS{magenta!10!white};
+
+\def\colE{blue!60!black};
+\def\fillE{cyan!20!white};
+
+\draw[->] (0,0)
+      -- node[pos=0.98,below] {$k$}
+      (6.75,0);
+\draw[->] (0,0)
+      -- node[pos=0.94,left]
+         {\textcolor{\colE}{$r$},
+          \textcolor{\colS}{$y$}}
+     (0,3);
+
+\draw[domain=0:6.5,samples=50,dashed,yscale=2,
+      variable=\x,blue]
+      plot ({\x},{1});
+\draw[domain=0:6,samples=13,
+      only marks,mark=*,mark size=1,
+      variable=\x,blue]
+      plot ({\x},{2});
+
+\draw[domain=0:6.5,samples=50,dashed,yscale=2,
+      variable=\x,\colS]
+      plot ({\x},{1-1/2^(2*\x)});
+\draw[domain=0:6,samples=13,
+      only marks,mark=*,mark size=1,
+      variable=\x,\colS]
+      plot ({\x},{2*(1-1/2^(2*\x))});
+
+\draw[domain=0:6.5,samples=50,dashed,yscale=2,
+      variable=\x,\colS]
+      plot ({\x},{1-1/1.428^(2*\x)});
+\draw[domain=0:6,samples=13,
+      only marks,mark=*,mark size=1,
+      variable=\x,\colS]
+      plot ({\x},{2*(1-1/1.428^(2*\x))});
+
+\foreach \k in {0,1,...,12}
+  \draw (\k/2,0)
+         -- node[pos=1,below] {\scriptsize{\k}} (\k/2,-0.1);
+
+\node[anchor=south west] at (1.25,2.25) (lblr)
+      {\scriptsize{\textcolor{\colE}{$r(k)=1$}}};
+
+\node[anchor=north west] at (1.5,1) (lblya)
+      {\scriptsize{\textcolor{\colS}
+      {$y(k)$, $Q=0.5$ $\Rightarrow$
+       0, 0.5, 0.75, 0.875,...}}};
+
+\node[anchor=north west] at (1.25,0.6) (lblyb)
+      {\scriptsize{\textcolor{\colS}
+      {$y(k)$, $Q=0.7$ $\Rightarrow$
+       0, 0.3, 0.51, 0.657,...}}};
+
+\draw[very thin,\colE] (1,2) -- (lblr.west);
+\draw[very thin,\colS] (1,2-2*0.25) -- (lblya.west);
+\draw[very thin,\colS] (1,2-2*0.49) -- (lblyb.west);
+
+\end{tikzpicture}

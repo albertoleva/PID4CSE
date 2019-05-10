@@ -1,0 +1,58 @@
+
+\begin{tikzpicture}
+\pgfplotsset{width=1.0\columnwidth,height=0.3\columnwidth}
+
+\pgfplotstableread{
+    0    0   0            0            0        
+    1    1   0.5          1.25        -0.1666667  
+    2    1   0.75         1.1875       0.0833333  
+    3    1   0.875        1.078125     0.375      
+    4    1   0.9375       1.0273437    0.6041667  
+    5    1   0.96875      1.0087891    0.7604167  
+    6    1   0.984375     1.0026855    0.859375   
+    7    1   0.9921875    1.0007935    0.9192708  
+    8    1   0.9960937    1.0002289    0.9544271  
+    9    1   0.9980469    1.0000648    0.9746094  
+    10   1   0.9990234    1.0000181    0.9860026  
+}\data
+
+\begin{groupplot}[
+group style={
+       group name=my plots,
+       group size=1 by 4,
+       xlabels at=edge bottom,
+       xticklabels at=edge bottom,
+       ylabels at=edge left,
+       yticklabels at=edge left,
+       vertical sep=0.3cm},
+       ymin=-0.5,
+       ymax=1.5,
+       xmax=10.5,
+       xlabel={$k$},
+       axis x line = bottom,axis y line = left,
+       ytick={-0.5,0,...,1},
+]
+
+\nextgroupplot[ylabel=$y_A(k)$,]
+\addplot+
+  [thick,const plot,no marks,red]
+   table [x index=0, y index=1]{\data};
+
+\nextgroupplot[ylabel=$y_B(k)$,]
+\addplot+
+  [thick,const plot,no marks,blue]
+   table [x index=0, y index=2]{\data};
+
+\nextgroupplot[ylabel=$y_C(k)$,]
+\addplot+
+  [thick,const plot,no marks,green]
+   table [x index=0, y index=3]{\data};
+
+\nextgroupplot[ylabel=$y_D(k)$,]
+\addplot+
+  [thick,const plot,no marks,magenta]
+   table [x index=0, y index=4]{\data};
+
+\end{groupplot}
+
+\end{tikzpicture}

@@ -1,0 +1,17 @@
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc}
+
+\tikzstyle{block} = [draw,rectangle,thick,minimum height=3em,minimum width=4em]
+\tikzstyle{sum} = [draw,circle,inner sep=0mm,minimum size=2mm]
+\tikzstyle{connector} = [->,thick]
+
+\begin{tikzpicture}[scale=1.00]
+
+\node [left] at (00.00,00.00) (in_u) {$u$};
+\node [block] at (01.20,00.00) (S) {{\huge$\mathcal{S}$}};
+\draw [connector] (in_u.east) -- (S.west);
+\node [right] at (02.40,00.00) (out_y) {$y$};
+\draw [connector] (S.east) -- (out_y.west);
+\end{tikzpicture}
+

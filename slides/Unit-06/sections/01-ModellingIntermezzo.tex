@@ -1,0 +1,187 @@
+\section{A modelling intermezzo}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Foreword and motivation}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We said right at the outset, that this activity would focus on control\\
+       and not on modelling.
+ \item However, without some knowledge on that matter, interpreting the\\
+       parameters of a control may be extremely cumbersome.
+ \item Hence we go through the bare minimum we need.
+ \item In particular, we temporarily bring the continuous-time (CT) domain\\
+       back into play.
+ \item \vfill CAVEAT: this material is not presented ``the mainstream way'',\\
+       so please be EXTREMELY attentive, stop and ask questions\\
+       immediately at the minimum unclear statement.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitleTC{Foreword and motivation}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Any phenomenon naturally takes place in the CT domain.
+ \item However we (shall) realise controllers as algorithms to run when a new value for $u$ is needed.
+ \item AS A RESULT OF THIS we need to model the controlled object as something that evolves ``by steps''.
+ \item We have three important questions to answer.
+       \begin{enumerate}[<+-| alert@+>]
+       \item Does the physics of that object ``naturally'' tell us when a new $u$ is to be\\
+             computed, or not (i.e., \underline{we} have to decide when to compute)?
+       \item In the second case, assuming that we are computing $u$ periodically,\\
+             is there any clue to choose the period?
+       \item Still in the second case, and most important to parametrise\\
+             a controller meaningfully, does the process model $P(z)$ change\\
+             if we change the period?
+       \end{enumerate}
+ \item \vfill As usual, we start from some examples and then abstract.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Example 1}
+\framesubtitleTC{Preemptive scheduling}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We look at the controlled system (plus sensor and actuator), NOT at the control.
+ \item Let us focus on the \emph{control oriented} model for one task.
+ \item Functionally:
+       \begin{itemize}[<+-| alert@+>]
+       \item a CPU time amount (or \TC{burst}) $b$ is allotted by some control (not our business here);
+       \item a timer is set and the task activated (actuation);
+       \item there is \TC{no information} from the task (no assumption on its code can\\
+             be made, the OS has to be agnostic) till either the time elapses,\\
+             or the task yields the CPU;
+       \item the scheduler regains control and measures (sensing) the actually\\
+             used CPU time; this will in general be $b+\delta b$, where $\delta b$\\
+             is a disturbance (yield before $b$, preemption interrupt received\\
+             while in a critical section, and so on);
+       \item control is invoked, and the same or some other task is activated.
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Example 1}
+\framesubtitleTC{Preemptive scheduling}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Is there a ``natural cadence'' for computing a new control? 
+ \item[] $\Rightarrow$ Yes, that of task activations.
+ \item Having thus $k$ count the scheduler intervention, which is the model with $b(k)$ as input 
+       and the task accumulated CPU time $t_{CPU}(k)$ as output?
+ \item[] $\Rightarrow$ Quite immediately, assuming that instant $k$ is at the \emph{end} of the activation\\
+       \hspace{5.5mm}period, thus the relative burst was decided at $k-1$,
+       \begin{displaymath}
+        t_{CPU}(k) = t_{CPU}(k-1)+b(k-1)+\delta_b(k-1).
+       \end{displaymath}
+ \item Does the model depend on the (continuous) time elapsed between\\
+       interventions $k-1$ and $k$?
+ \item[] $\Rightarrow$ Apparently, no.    
+ \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitleTC{Example 2}
+\framesubtitleTC{CPU thermal management --- brutally simplified}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Once again, no control and just the phenomenon to govern.
+ \item Thermal generation/storage/dissipation takes place in the CT domain:
+       \begin{itemize}[<+-| alert@+>]
+       \item {\scriptsize\verb#stored energy             = CPU thermal capacity * CPU temperature#}
+       \item {\scriptsize\verb#time derivative of energy = generated power - dissipated power#}
+       \item {\scriptsize\verb#generated power           = input#}
+       \item {\scriptsize\verb#dissipated power          = sink thermal conductance * (CPU temp. - ambient temp.)#}
+       \item {\scriptsize\verb#ambient temperature       = another input#}
+       \end{itemize}
+ \item As a differential equation, then,
+       \begin{displaymath}
+        C_{CPU} \frac{dT_{CPU}(t)}{dt} = P(t) - G_{sink}(T_{CPU}(t)-T_{amb}(t)).
+       \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Example 2}
+\framesubtitleTC{CPU thermal management}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item We want a DT model, however, so we decide a timestep $T_s$ to compute the model state and output (here
+       just $T_{CPU}$) and \TC{replace the time derivative with the incremental ratio over one step}.
+ \item Writing $v(k)$ in the DT to indicate $v(kT_s)$ in the CT, whatever $v$ is, this gives
+       \begin{displaymath}
+        C_{CPU} \frac{T_{CPU}(k)-T_{CPU}(k-1)}{T_s} = P(k) - G_{sink}(T_{CPU}(k)-T_{amb}(k)).
+       \end{displaymath}
+ \item The curious may ask why $k$ and not $k-1$ on the right hand side.\\
+       We omit the matter in this course, but if interested look for\\
+       ``implicit/explicit discretisation''.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitleTC{Example 2}
+\framesubtitleTC{CPU thermal management}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Now getting the model in $z$ form is straightforward:
+       \begin{displaymath}
+        C_{CPU} \frac{T_{CPU}-z^{-1}T_{CPU}}{T_s} = P - G_{sink}(T_{CPU}-T_{amb})
+       \end{displaymath}
+ \item Maxima:
+       {\scriptsize
+       \begin{verbatim}
+  dum: solve(Ccpu*(Tcpu-Tcpu/z)/Ts=P-Gsink*(Tcpu-Tamb),Tcpu); // Solve for Tcpu
+  sol: rhs(dum[1]);                                           // Take RHS of 1st element
+  TFs: jacobian([sol],[P,Tamb]);                              // Transfer functions
+       \end{verbatim}
+       }
+ \item Result:
+       \begin{displaymath}
+        \begin{array}{rcl}
+         T_{CPU}(k) &=&  \frac{zT_s}{(C_{CPU}+G_{sink}Ts)z-C_{CPU}} \, P(k) \\ \\
+                    & & +\frac{zG_{sink}T_s}{(C_{CPU}+G_{sink}Ts)z-C_{CPU}} \, T_{amb}(k).
+        \end{array}
+       \end{displaymath}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Example 2}
+\framesubtitleTC{CPU thermal management}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Does the model depend on the continuous time elapsed between $k-1$ and $k$,\\
+       i.e., on $T_s$?
+ \item[] $\Rightarrow$ Apparently, yes: $T_s$ appears as a parameter in the transfer functions.
+ \item Is there a ``natural cadence'' for computing a new control for this model?
+ \item Reformulating, is there a ``good'' value of $T_s$ so that the points computed by the\\
+       DT model represent ``well enough'' the CT solution, so as to be informative\\
+       for control and thereby suggest the cadence above?
+ \item[] $\Rightarrow$ Yes, but that ``good'' $T_s$ apparently depends on the numbers\\
+       \hspace{5.5mm}in the model. We have to decide based on them.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Lessons learnt}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Sometimes $k$ just counts control interventions, and the time in between them does not change the process
+       model $P(z)$.
+ \item In this case the control system is DT, and one can reason entirely in the DT domain. No need to relate
+       control parameters to any CT entity.
+ \item \vspace{3mm}Sometimes, conversely, the model $P(z)$ seen by the controller depends on the time between
+       two evaluations of its output, which for us coincides with the cadence to compute the control signal.
+ \item In this case the control system is DT but also \TC{sampled-signals},\\ 
+       and for evident practical reasons, control parameters need\\
+       expressing in such a way to not change if $T_s$ is changed.
+ \item Of course, in this case clues to select $T_s$ are also needed.
+ \end{itemize}
+\end{frame}
+

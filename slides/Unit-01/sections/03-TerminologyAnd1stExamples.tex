@@ -1,0 +1,100 @@
+\section{Terminology and first examples}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Terminology}
+\framesubtitleTC{(1/2)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item \TC{System} -- when required to avoid ambiguity, \TC{\underline{controlled} system:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] the object or phenomenon to be governed
+       \item[] (a vehicle, the thermal behaviour of a building,...).
+       \end{itemize}
+ \item \TC{Requirements} or \TC{objectives:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] what you want the system to do\\
+       \item[] (cruise as close as possible to 50 km/h, keep temperature between 18$^{\circ}$C\\
+                and 21$^{\circ}$C in all rooms,...)
+       \end{itemize}
+ \item \TC{Controls} or \TC{control actions} or simply \TC{actions:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] what is done to the system with the purpose of fulfilling the requirements
+       \item[] (act on the gas/brakes, modulate fuel flowrate to heater,\\
+                operate fan coils,...).
+       \end{itemize}
+ \item \TC{Outcomes:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] the actual behaviour of the system
+       \item[] (real speed and temperature behaviour over time,...).
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Terminology}
+\framesubtitleTC{(2/2)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item \TC{Disturbances:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] anything that affects the outcomes and cannot be manipulated, but possibly sensed
+       \item[] (road slope, wind, vehicle load, weather, room occupancy,...);
+       \item[] in other words, actions from the environment to which the system must be resilient.
+       \end{itemize}
+ \item \TC{Sensors:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] the entities that gather information from the system
+       \item[] (tacho/accelerometer, GPS, inside/outside temperature sensors,...).
+       \end{itemize}
+ \item \TC{Actuators:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] the entities that act on the system to exert the actions
+       \item[] (engine, brakes, burners, pumps, valves,...).
+       \end{itemize}
+ \item \TC{Controllers:}
+       \begin{itemize}[<+-| alert@+>]
+       \item[] the entities that determine the actions given the information\\
+               deemed relevant\\
+       \item[] (the object of your design).
+       \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Remarks}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Quite often we can talk about a control \TC{objective} in terms of a \TC{signal}\\
+       following another one.
+ \item In the case we use to say that
+       \begin{itemize}[<+-| alert@+>]
+       \item we have a \TC{controlled variable} (e.g., the speed of a vehicle)
+       \item and want it to follow a \TC{set point} or \TC{reference} signal (e.g., go from 0 to 100 km/h
+             linearly in 10 seconds).
+       \end{itemize}
+ \item Also, quite often our action can be viewed as setting a variable (e.g., the gas\\
+       valve opening in the 0--100\% range); we call such a variable\\
+       the \TC{control signal}.
+ \item Consistently, we can often represent exogenous actions (e.g., wind\\
+       speed and directions) that we called \TC{disturbances}, as signals.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Remarks}
+\framesubtitleTC{}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item You are probably thinking that in the computer world the situation just sketched is hardly ever encountered.
+ \item The objection seems in fact reasonable, as the entities one manages in computers are far more
+       heterogeneous than mere numbers varying over time.
+ \item \vfill Nonetheless hold on; you will discover that on the contrary, much more computer-related problems
+       than one expects, can be formulated in terms\\ of \TC{set point following} and/or \TC{disturbance rejection}.
+ \item In the end, learning systems and control is learning a new kind\\
+       of abstraction.
+ \end{itemize}
+\end{frame}
+
+

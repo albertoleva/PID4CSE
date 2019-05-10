@@ -1,0 +1,64 @@
+
+\begin{tikzpicture}
+\pgfplotsset{width=1.0\columnwidth,height=0.5\columnwidth}
+
+\pgfplotstableread{
+    0.     0.25    0.1          0.4        
+    1.     0.25    0.13         0.28       
+    2.     0.25    0.154        0.256      
+    3.     0.25    0.1732       0.2512     
+    4.     0.25    0.18856      0.25024    
+    5.     0.25    0.200848     0.250048   
+    6.     0.25    0.2106784    0.2500096  
+    7.     0.25    0.2185427    0.2500019  
+    8.     0.25    0.2248342    0.2500004  
+    9.     0.25    0.2298673    0.2500001  
+    10.    0.25    0.2338939    0.2500000  
+    11.    0.25    0.2371151    0.25       
+    12.    0.25    0.2396921    0.25       
+    13.    0.25    0.2417537    0.25       
+    14.    0.25    0.2434029    0.25       
+    15.    0.25    0.2447223    0.25       
+    16.    0.25    0.2457779    0.25       
+    17.    0.25    0.2466223    0.25       
+    18.    0.25    0.2472978    0.25       
+    19.    0.25    0.2478383    0.25       
+    20.    0.25    0.2482706    0.25       
+      
+}\data
+
+\begin{axis}[
+       ymin=0,
+       ymax=0.5,
+       xmax=28.5,
+       xlabel={$k$},
+       axis x line = bottom,axis y line = left,
+       ytick={-1,1},
+       yticklabels={}
+]
+
+\addplot
+  [thick,const plot,no marks,blue]
+   table [x index=0, y index=2]{\data};
+
+\addplot
+  [thick,const plot,no marks,green!80!black]
+   table [x index=0, y index=3]{\data};
+
+\addplot
+  [thick,const plot,no marks,red,densely dotted]
+   table [x index=0, y index=1]{\data};
+
+\node[red,anchor=west] at (axis cs:20,0.25)
+      {\large{final value $\frac{1-p}{\mu}$}};
+\node[green!80!black,anchor=west] at (axis cs:1.5,0.4)
+      {\large{$\alpha<p$}};
+\node[blue,anchor=west] at (axis cs:1.5,0.1)
+      {\large{$\alpha>p$}};
+\end{axis}
+
+\node at (-1,2.9) {\large{initial}};
+\node at (-1,2.5) {\large{value}};
+\node at (-1,1.9) {\large{$\frac{1-\alpha}{\mu}$}};
+
+\end{tikzpicture}

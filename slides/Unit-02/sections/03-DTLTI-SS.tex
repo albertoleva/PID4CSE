@@ -1,0 +1,209 @@
+\section{DT LTI -- state space}
+
+\subsection{}
+
+\begin{frame}
+\frametitleTC{The DT LTI class}
+\framesubtitleTC{Preliminaries}
+\begin{itemize}[<+-| alert@+>]
+\item For the LTI class, that we see here almost exclusively in the DT context, there exists a very strong theory.
+\item The same is not true for more general (e.g., nonlinear) system classes.
+\item Therefore, control problems of the type addressed here, are cast in the LTI framework wherever possible.
+\item \vfill This motivates the importance of the DT LTI class, which we now\\
+      come to examine.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{State-space representation of a DT LTI system}
+\framesubtitleTC{Definition --- we stick to the SISO case for simplicity}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item The \TC{State-Space (SS)} representation of a DT LTI dynamic system is the quadruplet $(A,b,c,d)$ in
+      \begin{displaymath}
+       \left\{
+        \begin{array}{rlll}
+         x(k) &= A x(k-1) + b u(k-1) & & \text{\TC{(state equation)}}  \\
+         y(k) &= c x(k)   + d u(k)   & & \text{\TC{(output equation)}}
+        \end{array}
+       \right.
+      \end{displaymath}    
+\item $u(k)$ and $y(k)$ are real scalars;
+\item $x(k) \in \Re^n$, where $n$ is the system's order;
+\item the real \TC{dynamic matrix} $A$ is $n \times n$;
+\item $b$ is a real column vector ($n \times 1$);
+\item $c$ is a real row vector ($1 \times n$);
+\item $d$ is a real scalar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Motion}
+\framesubtitleTC{}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Given $x(0)$ and $u(k)$, $k \geq 0$, we get
+      {\small
+      \begin{displaymath}
+       \begin{array}{rclcl}
+        x(1) &=& Ax(0)+bu(0) \\
+        x(2) &=& Ax(1)+bu(1) &=& A^2x(0)+Abu(0)+bu(1) \\
+        x(3) &=& Ax(2)+bu(2) &=& A^3x(0)+A^2bu(0)+Abu(1)+bu(2) \\
+             & & \cdots\\
+       \end{array}
+      \end{displaymath}
+      }
+\item This readily generalises to the \TC{Lagrange state formula}
+      \begin{displaymath}
+       x(k) = A^k x(0) +\sum\limits_{h=0}^{k-1} A^{k-h-1}bu(h).
+      \end{displaymath}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Free and induced state motion}
+\framesubtitleTC{}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item In LTI systems, the state motion $x(k)$ is the \TC{sum} of a \TC{free motion} $x_F(k)$ and an
+      \TC{induced motion} $x_I(k)$, i.e.,
+      \begin{displaymath}
+       x(k) = x_F(k) + x_I(k),
+      \end{displaymath} \myPause
+      where
+      \begin{displaymath}
+       x_F(k) = A^k x(0), \quad
+       x_I(k) = \sum\limits_{h=0}^{k-1} A^{k-h-1}bu(h).
+      \end{displaymath} \myPause
+\item $x_F(k)$ depends linearly on $x(0)$ and not on $u$,
+\item while $x_I(k)$ depends linearly only on $u(k)$ and not on $x(0)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Free and induced output motion}
+\framesubtitleTC{}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item In LTI systems, also the state motion $y(k)$ is the \TC{sum} of a \TC{free motion} $y_F(k)$ and an
+      \TC{induced motion} $y_I(k)$, i.e.,
+      \begin{displaymath}
+       y(k) = y_F(k) + y_I(k),
+      \end{displaymath} \myPause
+      where
+      \begin{displaymath}
+       y_F(k) = cA^k x(0), \quad
+       y_I(k) = c\sum\limits_{h=0}^{k-1} A^{k-h-1}bu(h) +du(k).
+      \end{displaymath} \myPause
+\item again, $y_F(k)$ depends linearly on $x(0)$ and not on $u$,
+\item while $y_I(k)$ depends linearly only on $u(k)$ and not on $x(0)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Equilibrium}
+\framesubtitleTC{}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item For an LTI system, equilibrium states are found by solving
+      \begin{displaymath}
+       \overline{x} = A\overline{x}+b\overline{u}.
+      \end{displaymath}
+\item Thus, if $A$ has no unity eigenvalues, there exists the one equilibrium
+      \begin{displaymath}
+       \overline{x} = (I-A)^{-1}b\overline{u},
+      \end{displaymath}
+\item while in the opposite case, either there is no equilibrium, or there\\
+      are infinite ones.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Equilibrium}
+\framesubtitleTC{Peculiarities of L(TI) systems}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Contrary to nonlinear systems, they cannot have a finite number of equilibria, different from zero and one.
+\item If some $\overline{u}$ produces zero, one or infinite equilibria, the same is true for any other $\overline{u}$,
+      contrary again to the nonlinear case.
+\item For each equilibrium state, there surely exists the one equilibrium output
+      \begin{displaymath}
+       \overline{y}=c\overline{x}+d\overline{u}.
+      \end{displaymath}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Stability of an equilibrium}
+\framesubtitleTC{}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item Let $(\overline{x},\overline{u})$ be an equilibrium for an LTI system. 
+\item The Lagrange state formula leads to write
+      \begin{displaymath}
+       \overline{x} = A^k \overline{x} +\sum\limits_{h=0}^{k-1} A^{k-h-1}b\overline{u}.
+      \end{displaymath}.
+\item Consider now the  perturbed motion $x_{\Delta}(k)$ produced by $\overline{u}$ and
+      $x(0)=\overline{x}+\Delta\overline{x}$; the same formula yields
+      \begin{displaymath}
+       x_{\Delta}(k) = A^k (\overline{x}+\Delta\overline{x}) +\sum\limits_{h=0}^{k-1} A^{k-h-1}b\overline{u}.
+      \end{displaymath}
+\item Subtracting, therefore,
+      \begin{displaymath}
+       x_{\Delta}(k)-\overline{x} = A^k\Delta\overline{x}
+      \end{displaymath}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Stability of an equilibrium}
+\framesubtitleTC{and in the L(TI) case, of a system}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item The way $x_{\Delta}(k)$ moves with respect to $\overline{x}$ does not depend on $\overline{x}$.
+\item That is, contrary the nonlinear case, there cannot be equilibria with different stability characteristics.
+\item In the L(TI) class, stability is a property of the \emph{system}, not of the individual equilibria.
+\item Moreover, 
+      \begin{itemize}[<+-| alert@+>]
+      \item for $k\rightarrow\infty$, $||x_{\Delta}(k)-\overline{x}|| \rightarrow 0 \, \forall x(0)$  iff $A^k$
+            converges to a zero matrix,
+      \item the same norm generally diverges if at least one element of $A^k$ does,
+      \item and if $A^k$ neither converges to zero nor diverges, the same happens\\
+            to $||x_{\Delta}(k)-\overline{x}||$.
+      \end{itemize}
+\item Thus, in the LTI case, the stability of a system only depends on its\\
+      dynamic matrix $A$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={pag:stab-eivals}]
+\frametitleTC{Stability and eigenvalues of $A$}
+\framesubtitleTC{}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item The following can be proven.
+      \begin{itemize}[<+-| alert@+>]
+      \item An LTI system is asymptotically stable iff all the eigenvalues of $A$ have magnitude less  than one
+            (or, equivalently, lie in the open \TC{unit circle} of the complex plane).
+      \item The same system is unstable if (but not only if) at least one eigenvalue of $A$ has magnitude greater
+            than one.
+      \item If all the eigenvalues of $A$ have magnitude less than or equal to one, and there exists at least one
+            with unity magnitude, the system can be either unstable\\
+            or stable, but not asymptotically.
+      \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Properties of asymptotically stable systems}
+\framesubtitleTC{also in a view to control}
+\myPause
+\begin{itemize}[<+-| alert@+>]
+\item An asymptotically stable system has one and only one equilibrium for each constant input.
+\item The state and output free motions of an asymptotically stable system converge to zero (norm)
+      for $k\rightarrow\infty$.
+\item As a consequence, asymptotically stable systems ``forget their initial condition''...
+\item ...which is a definitely desired property for a \TC{controlled} system.
+\end{itemize}
+\end{frame}
+

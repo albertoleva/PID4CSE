@@ -1,0 +1,120 @@
+\tikzstyle{block} = [draw,rectangle,black,thick,
+   fill=yellow!20!white,
+   minimum width=8mm,minimum height=8mm,
+   text width=8mm,align=center]
+
+\tikzstyle{sum} = [draw,circle,black,thick,
+   fill=yellow!20!white, inner sep=1mm]
+
+\tikzstyle{sigin} = [anchor=east]
+
+\tikzstyle{sigout} = [anchor=west]
+
+\begin{tikzpicture}
+
+% frame to draw (1--7) ---------------------------------------------------------------------
+\def\fm{7}
+
+\draw[draw=none] (-7cm,-5.2cm) rectangle (7.2cm,1.6cm);
+
+% fm =1
+\node[block]
+     (dx1) {\large{$z^{-1}$}};
+\node[block,below=28mm of dx1]
+     (dx2) {\large{$z^{-1}$}};
+
+%fm=2+
+\ifthenelse{\fm>1}{
+\draw[<-,thick] (dx1.west) --
+     node[pos=0.5,above]
+     {\textcolor{red}{$x_1(k+1)$}}
+     ++(-2cm,0);
+\draw[-,thick] (dx1.east) --
+     node[pos=0.5,above]
+     {\textcolor{red}{$x_1(k)$}}
+     ++(1.5cm,0);
+\draw[<-,thick] (dx2.west) --
+     node[pos=0.5,above]
+     {\textcolor{red}{$x_2(k+1)$}}
+     ++(-2cm,0);
+\draw[-,thick] (dx2.east) --
+     node[pos=0.5,above]
+     {\textcolor{red}{$x_2(k)$}}
+     ++(1.5cm,0);
+}{};
+
+%fm=3+
+\ifthenelse{\fm>2}{
+\node[sum,left=2cm of dx1] (sx1) {};
+\node[sum,left=2cm of dx2] (sx2) {};
+\node[block,above=3mm of dx1,fill=magenta!10!white]
+     (a11) {\textcolor{magenta}{0.4}};
+\node[block,below=3mm of dx1,fill=magenta!10!white]
+     (a21) {\textcolor{magenta}{0.05}};
+\node[block,above=3mm of dx2,fill=magenta!10!white]
+     (a12) {\textcolor{magenta}{0.4}};
+\node[block,below=3mm of dx2,fill=magenta!10!white]
+     (a22) {\textcolor{magenta}{0.3}};
+\node[block,left=10mm of sx1,fill=blue!10!white]
+     (b1) {\textcolor{blue}{2}};
+\node[block,left=10mm of sx2,fill=blue!10!white]
+     (b2) {\textcolor{blue}{-1}};
+}{};
+
+%fm=4+
+\ifthenelse{\fm>3}{
+\draw[<->,thick] (a11.east)
+     --++(15mm,0) |- (a21.east);
+\draw[<->,thick] (a22.east)
+     --++(15mm,0) |- (a12.east);
+\draw[->,thick] (a11.west)  -|
+     node[pos=0.88,left,xshift=0.5mm]{$+$}
+     (sx1.north);
+\draw[->,thick] (a22.west)  -|
+     node[pos=0.88,left,xshift=0.5mm]{$+$}
+     (sx2.south);
+\draw[->,thick] (a12.west) --++(-10mm,0)
+     --++(-11.5mm,11.5mm) --
+     node[pos=0.85,right,xshift=-0.2mm]{$+$}
+     (sx1.south);
+\draw[->,thick] (a21.west) --++(-10mm,0)
+     --++(-11.5mm,-11.5mm) --
+     node[pos=0.85,right,xshift=-0.2mm]{$+$}
+     (sx2.north);
+}{};
+
+%fm=5+
+\ifthenelse{\fm>4}{
+\draw[<->,thick] (b1.west)
+     --++(-5mm,0) |- (b2.west); 
+\node[sigin,left=10mm of b1,yshift=-18mm]
+     (u) {$u(k)$};
+\draw[-,thick] (u.east) --++(5mm,0);
+\draw[->,thick] (b1.east) --
+     node[pos=0.82,below]{$+$} (sx1.west);
+\draw[->,thick] (b2.east) --
+     node[pos=0.82,above]{$+$} (sx2.west);
+}{};
+
+%fm=6+
+\ifthenelse{\fm>5}{
+\node[block,right=25mm of a21,fill=green!10!white]
+     (c1) {\textcolor{green!60!black}{2}};
+\node[block,right=25mm of a12,fill=green!10!white]
+     (c2) {\textcolor{green!60!black}{-1}};
+}{};
+
+%fm=7+
+\ifthenelse{\fm>6}{
+\draw[->,thick] (a21.east) -- (c1.west);
+\draw[->,thick] (a12.east) -- (c2.west);
+\node[sum,right=10mm of c1,yshift=-6.75mm] (sy){};
+\node[sigout,right=8mm of sy] (y) {$y(k)$};
+\draw[->,thick] (c1.east) -|
+     node[pos=0.85,left]{$+$} (sy.north);
+\draw[->,thick] (c2.east) -|
+     node[pos=0.85,left]{$+$} (sy.south);
+\draw[->,thick] (sy.east) -- (y.west);
+}{};
+
+\end{tikzpicture}

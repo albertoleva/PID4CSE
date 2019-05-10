@@ -1,0 +1,62 @@
+\tikzstyle{block} = [draw,rectangle,black,thick,
+   fill=yellow!20!white,
+   minimum width=12mm,minimum height=10mm,
+   text width=30mm,align=center]
+
+\tikzstyle{sum} = [draw,circle,black,thick,
+   fill=yellow!20!white, inner sep=1mm]
+
+\tikzstyle{sigin} = [anchor=east]
+
+\tikzstyle{sigout} = [anchor=west]
+
+\begin{tikzpicture}
+
+\node[sigin] (u) {$u(k)$};
+
+\node[block,right=1cm of u] (g1)
+     {\Large{$\frac{\textcolor{blue}{2}}
+                   {z-\textcolor{magenta}{0.5}}$}};
+
+\node[block,above=1cm of g1] (g2)
+     {\Large{$\frac{\textcolor{blue}{3}}
+                   {z-\textcolor{magenta}{0.2}}$}};
+
+\node[block,right=1cm of g1] (g3)
+     {\Large{$\frac{\textcolor{brown}{1}}
+            {z\textcolor{magenta}{-0.5}}$}};
+
+\node[block,below=1cm of g1] (g4)
+     {\Large{$\frac{\textcolor{blue}{0.5}}
+                   {z-\textcolor{magenta}{0.8}}$}};
+
+\node[sum,right=1.5cm of g3] (s) {};
+
+\node[sigout,right=1cm of s] (y) {$y(k)$};
+
+\draw[->,thick] (u.east) -- (g1.west);
+\draw[->,thick] (u.east) --++(5mm,0) |- (g2.west);
+\draw[->,thick] (u.east) --++(5mm,0) |- (g4.west);
+
+\draw[->,thick] (g1.east) --
+     node[pos=0.5,above]
+     {\textcolor{red}{$x_3(k)$}} (g3.west);
+
+\draw[->,thick] (g3.east) --
+     node[pos=0.33,above]
+     {\textcolor{red}{$x_2(k)$}}
+     node[pos=0.80,above]{$+$} (s.west);
+
+\draw[->,thick] (g2.east) -|
+     node[pos=0.042,above]
+     {\textcolor{red}{$x_1(k)$}}
+     node[pos=0.90,left,xshift=0.6mm]{$+$} (s.north);
+
+\draw[->,thick] (g4.east) -|
+     node[pos=0.042,above]
+     {\textcolor{red}{$x_4(k)$}}
+     node[pos=0.95,left,xshift=0.6mm]{$-$} (s.south);
+
+\draw[->,thick] (s.east) -- (y.west);
+
+\end{tikzpicture}

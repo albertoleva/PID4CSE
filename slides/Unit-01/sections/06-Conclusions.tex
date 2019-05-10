@@ -1,0 +1,69 @@
+\section{Conclusions}
+\subsection{}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (1/3)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Control is \TC{governing a phenomenon} (physical or not).
+ \item This means determining \TC{actions} on that phenomenon, based on \TC{requirements}\\
+       and possibly \TC{measurements}.
+ \item Major issues are exogenous actions -- or \TC{disturbances} -- and \TC{uncertainty},\\
+       i.e., only partial knowledge of the controlled system.
+ \item Quite often a control problem can be formulated in terms of signals,\\
+       i.e., as \TC{tracking a reference} and/or \TC{rejecting disturbances}.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (2/3)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item A controller may or may not know the effects of its action on the controlled system, giving rise to
+       \TC{closed-loop} (or \TC{feedback}) versus \TC{open-loop} control.
+ \item A controller can operate in the continuous time, but in computing systems this is\\
+       practically never the case;
+ \item hence for us a controller is a piece of code, invoked either periodically or based\\
+       on events, giving rise to \TC{discrete-time} versus \TC{event-based} control.
+ \item Control signals can be \TC{numeric} or \TC{lexical}, corresponding to \TC{modulating}\\
+       versus \TC{logic} control.
+ \item Control problems are posed and treated with reference to one\\
+       or more classes of \TC{dynamic systems}. 
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitleTC{Conclusions}
+\framesubtitleTC{Recap and lessons learnt (3/3)}
+\myPause
+ \begin{itemize}[<+-| alert@+>]
+ \item Dynamic systems have a \TC{state}, hence they
+       \begin{itemize}[<+-| alert@+>]
+       \item remember the past,
+       \item or -- equivalently -- their initial condition,
+       \item and thus \TC{can produce different outputs in response to the same input}...
+       \item ...without however being time-varying or ``adaptive'' (remember this remark!).
+       \end{itemize}
+ \item We have seen some classes of dynamic systems.
+ \item In the following we shall concentrate on LTI ones, almost exclusively\\
+       in the DT domain. 
+ \end{itemize}
+\end{frame}
+
+\section{}
+{
+\setbeamertemplate{headline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=1.5ex]{palette quaternary}
+  \end{beamercolorbox}
+  }
+\begin{frame}[noframenumbering]
+ \vspace{20mm}\Huge{Discussion open}
+\end{frame}
+}
+

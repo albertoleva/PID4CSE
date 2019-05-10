@@ -1,0 +1,68 @@
+
+\begin{tikzpicture}
+\pgfplotsset{width=1.0\columnwidth,height=0.5\columnwidth}
+% t=0:25;
+% y1=csim('step',t,syslin('c',1/(1+2*%s)));
+% y2=csim('step',t,syslin('c',0.9/(1+2*%s)));
+% y3=csim('step',t,syslin('c',1/(1+6*%s)));
+% y4=csim('step',t,syslin('c',1/(1+0.4*%s+%s^2)));
+% [t(:),y1(:),y2(:),y3(:),y4(:)]
+\pgfplotstableread{
+    0.     0.        0.        0.        0.
+    1.     0.        0.        0.        0.
+    2.     0.        0.        0.        0.         
+    3.     0.3934    0.3737    0.1812    0.3929
+    4.     0.6321    0.6005    0.3296    1.0706
+    5.     0.7768    0.7380    0.4511    1.4305
+    6.     0.8646    0.8214    0.5506    1.3372
+    7.     0.9179    0.8720    0.6321    1.0365
+    8.     0.9502    0.9027    0.6988    0.8277
+    9.     0.9698    0.9213    0.7534    0.8257
+    10.    0.9816    0.9326    0.7981    0.9506
+    11.    0.9888    0.9394    0.8347    1.0621
+    12.    0.9932    0.9435    0.8646    1.0847
+    13.    0.9959    0.9461    0.8891    1.0371
+    14.    0.9975    0.9476    0.9092    0.9813
+    15.    0.9984    0.9485    0.9257    0.9610
+    16.    0.9990    0.9491    0.9391    0.9768
+    17.    0.9994    0.9494    0.9502    1.0032
+    18.    0.9996    0.9496    0.9592    1.0168
+    19.    0.9997    0.9498    0.9666    1.0129
+    20.    0.9998    0.9498    0.9726    1.0011
+    21.    0.9999    0.9499    0.9776    0.9931
+    22.    0.9999    0.9499    0.9816    0.9932
+    23.    0.9999    0.9499    0.9850    0.9981
+    24.    0.9999    0.9499    0.9877    1.0024
+    25.    0.9999    0.9499    0.9899    1.0032
+    26.    0.9999    0.9499    0.9917    1.0013
+    27.    0.9999    0.9499    0.9932    0.9992
+}\data
+
+\begin{axis}[
+       ymin=0,
+       ymax=1.6,
+       xmax=28.2,
+       axis x line = bottom,axis y line = left,
+       ytick={-0.5,0,...,1},
+]
+
+\addplot [black,densely dotted]
+   coordinates { (0,0) (2,0) (2,1)(25,1)};
+
+\addplot[,mark=*,mark size=1,red!95!black]
+   table[x index=0, y index=2]{\data};
+
+\addplot [mark=*,mark size=1,green!80!black]
+   table [x index=0, y index=3]{\data};
+
+\addplot [mark=*,mark size=1,magenta!95!black]
+   table [x index=0, y index=4]{\data};
+
+\addplot [thick,mark=*,mark size=1,blue!80!black]
+   table [x index=0, y index=1]{\data};
+
+\end{axis}
+
+\node at (0.9,3){$w(k)$};
+\node at (10.3,-0.3){$k$};
+\end{tikzpicture}
